@@ -4,7 +4,7 @@
     <swiper-item v-for="item in banners">
       <!-- 这里通过v-bind动态绑定变量里面的属性 -->
       <a :href="item.link">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" @load="swiperImgLoad" />
       </a>
     </swiper-item>
   </swiper>
@@ -24,9 +24,23 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      isLoad: false,
+    };
+  },
   components: {
     Swiper,
     SwiperItem,
+  },
+  methods: {
+    swiperImgLoad() {
+      // 使用节流阀
+      if (!this.isLoad) {
+        this.$emit("swiperImgLoad");
+        this.isLoad = true;
+      }
+    },
   },
 };
 </script>

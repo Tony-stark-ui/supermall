@@ -29,6 +29,7 @@ export default {
   methods: {
     itemClick(index) {
       this.currentIndex = index;
+      this.$emit("tabClick", index);
     },
   },
 };
@@ -36,6 +37,7 @@ export default {
 
 <style>
 .tab-contro {
+  z-index: 999;
   display: flex;
   background-color: #fff;
 }
